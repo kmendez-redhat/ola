@@ -55,6 +55,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 // Tips from https://alexecollins.com/spring-boot-performance/
 //@SpringBootApplication
 @Configuration
+@EnableSwagger2
 @Import({
     AuditAutoConfiguration.class,
     DispatcherServletAutoConfiguration.class,
