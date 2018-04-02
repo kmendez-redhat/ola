@@ -16,13 +16,88 @@
  */
 package com.redhat.developers.msa.ola;
 
+import org.keycloak.adapters.springboot.KeycloakSpringBootConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.AuditAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.EndpointAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.EndpointMBeanExportAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.EndpointWebMvcAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.EndpointWebMvcManagementContextConfiguration;
+import org.springframework.boot.actuate.autoconfigure.HealthIndicatorAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.InfoContributorAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerPropertiesAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricExportAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.PublicMetricsAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.TraceRepositoryAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.TraceWebFilterAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
+import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
+import org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
+// Tips from https://alexecollins.com/spring-boot-performance/
+//@SpringBootApplication
 @EnableSwagger2
+@Configuration
+@EnableAutoConfiguration
+@Import({
+    AuditAutoConfiguration.class,
+    DispatcherServletAutoConfiguration.class,
+    EmbeddedServletContainerAutoConfiguration.class,
+    EndpointAutoConfiguration.class,
+    EndpointMBeanExportAutoConfiguration.class,
+    EndpointWebMvcAutoConfiguration.class,
+    EndpointWebMvcManagementContextConfiguration.class,
+    ErrorMvcAutoConfiguration.class,
+    //GenericCacheConfiguration.class,
+    GsonAutoConfiguration.class,
+    //GsonHttpMessageConvertersConfiguration.class,
+    HealthIndicatorAutoConfiguration.class,
+    HttpEncodingAutoConfiguration.class,
+    HttpMessageConvertersAutoConfiguration.class,
+    InfoContributorAutoConfiguration.class,
+    JacksonAutoConfiguration.class,
+    //JacksonHttpMessageConvertersConfiguration.class,
+    JmxAutoConfiguration.class,
+    KeycloakSpringBootConfiguration.class,
+    ManagementServerPropertiesAutoConfiguration.class,
+    MetricExportAutoConfiguration.class,
+    MetricFilterAutoConfiguration.class,
+    MetricRepositoryAutoConfiguration.class,
+    MultipartAutoConfiguration.class,
+    PublicMetricsAutoConfiguration.class,
+    //RedisCacheConfiguration.class,
+    ServerPropertiesAutoConfiguration.class,
+    //ServerTracingAutoConfiguration.class,
+    //SimpleCacheConfiguration.class,
+    TraceRepositoryAutoConfiguration.class,
+    TraceWebFilterAutoConfiguration.class,
+    WebClientAutoConfiguration.class,
+    WebMvcAutoConfiguration.class,
+    WebSocketAutoConfiguration.class,
+    OlaController.class,
+    HystrixServletConfiguration.class,
+    KeycloakCORSConfiguration.class,
+    SwaggerConfiguration.class,
+    TracingConfiguration.class
+})
 public class OlaApplication {
 
     public static void main(String[] args) {
